@@ -1,4 +1,13 @@
 import launch
 
-if not launch.is_installed("huggingface_hub"):
-    launch.run_pip("install huggingface_hub", "huggingface_hub")
+packages = [
+    "huggingface_hub>=0.20.0",
+    "requests"
+]
+
+for pkg in packages:
+    if not launch.is_installed(pkg.split(">=")[0]):
+        launch.run_pip(
+            f"install {pkg}",
+            pkg
+        )
